@@ -42,20 +42,25 @@
 		
 		protected function __trigger(){
 			
-			session_start();
-			
+			session_start();			
 			$xml = new XMLElement('session-monster');
-			
+			$exclude = array('symphony-page', 'Debug', 'debug', 'profile');
 			$count = 0;
 			
-		    foreach($_GET as $key => $val){ 
-		        if(!in_array($key, array('page', 'debug', 'profile'))){
+		    foreach($_GET as $key => $val){
+		        if(!in_array($key, $exclude)){
 					$_SESSION[__SYM_COOKIE_PREFIX__ . '-sessionmonster'][$key] = $val;
 		        	$xml->appendChild(new XMLElement('item', $val, array('name' => $key, 'action' => (strlen($val) > 0 ? 'added' : 'removed'))));
 					$count++;
 		        }
 		    }
-
+			if(is_array($_SESSION[__SYM_COOKIE_PREFIX__ . '-sessionmonster'])) {
+				foreach($_SESSION[__SYM_COOKIE_PREFIX__ . '-sessionmonster'] as $key => $val){
+					if (!in_array($key, $exclude)) {
+						Frontend::Page()->_param['sessionmonster-'.$key] = $val;		
+					}					
+				}
+			}
 		    return ($count == 0 ? NULL : $xml);
 			
 		}
