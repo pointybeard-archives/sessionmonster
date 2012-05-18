@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="sessionmonster" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Session Monster</name>
+	<description>Session management</description>
+	<repo type="github">https://github.com/symphonists/sessionmonster</repo>
+	<url type="discuss">http://symphony-cms.com/discuss/thread/266/</url>
+	<types />
+	<authors>
+		<author>
+			<name github="symphonists" symphony="community">Symphony Community</name>
+		</author>
+	</authors>
+	<releases>
+		<release version="1.0" date="2009-05-11" min="2.0.6" max="2.2.x" />
+	</releases>
+</extension>
